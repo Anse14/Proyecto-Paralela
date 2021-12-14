@@ -6,7 +6,18 @@ tasks:
   run:
     deps: [build]
     cmds:
-      - ./main.o
+      - ./main.o {{.CLI_ARGS}}
   build:
     cmds:
       - clang++ -o main.o main.cc --std=c++2a -fopenmp
+
+  runThreads:              
+    deps: [build]          
+    cmds:                  
+      - OMP_NUM_THREADS=1 ./main.o {{.CLI_ARGS}}
+      - OMP_NUM_THREADS=2 ./main.o {{.CLI_ARGS}}
+      - OMP_NUM_THREADS=4 ./main.o {{.CLI_ARGS}}
+      - OMP_NUM_THREADS=8 ./main.o {{.CLI_ARGS}}
+      - OMP_NUM_THREADS=16 ./main.o {{.CLI_ARGS}}
+      - OMP_NUM_THREADS=32 ./main.o {{.CLI_ARGS}}
+ 
