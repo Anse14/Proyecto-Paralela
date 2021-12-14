@@ -27,7 +27,6 @@ double MultModM(double a, double s, double c, double m) {
     return v;
 }
 
-
 //-------------------------------------------------------------------------
 // Compute the vector v = A*s MOD m. Assume that -m < s[i] < m.
 // Works also when v = s.
@@ -45,7 +44,6 @@ void MatVecModM(const double A[3][3], const double s[3], double v[3],
   for (i = 0; i < 3; ++i)
     v[i] = x[i];
 }
-
 
 //-------------------------------------------------------------------------
 // Compute the matrix C = A*B MOD m. Assume that -m < s[i] < m.
@@ -68,7 +66,6 @@ void MatMatModM(const double A[3][3], const double B[3][3], double C[3][3],
       C[i][j] = W[i][j];
 }
 
-
 //-------------------------------------------------------------------------
 // Compute the matrix B = (A^(2^e) Mod m);  works also if A = B.
 //
@@ -85,7 +82,6 @@ void MatTwoPowModM(const double A[3][3], double B[3][3], double m, long e) {
   for (i = 0; i < e; i++)
     MatMatModM(B, B, B, m);
 }
-
 
 //-------------------------------------------------------------------------
 // Compute the matrix B = (A^n Mod m);  works even if A = B.

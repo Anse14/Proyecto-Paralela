@@ -9,4 +9,4 @@ tasks:
       - ./main.o
   build:
     cmds:
-      - clang++ -o main.o main.cc --std=c++2a
+      - clang++ -o main.o main.cc --std=c++2a -fopenmp
