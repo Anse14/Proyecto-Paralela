@@ -3,16 +3,7 @@
 #include <omp.h>
 using namespace std;
 
-auto main() -> int {
-  // int myRank;
-  //#pragma omp parallel private(myRank)
-  //{
-  // myRank = omp_get_thread_num();
-  //#pragma omp critical
-  //{ std ::cout << RngArray[myRank].RandU01() << " "; }
-  //}
-  // std ::cout << std ::endl;
-
+auto main(int argc, const char** argv) -> int {
   int nP = 200;
   omp_set_num_threads(nP); // set number of threads
   unsigned long seed[6] = {1806547166, 3311292359, 643431772,
