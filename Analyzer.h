@@ -22,7 +22,9 @@ public:
   }
 
   std::chrono::duration<double> printResults(int times, Types... params) {
-    ((std::cout << "->" << params), ...); 
+    //((std::cout << "->" << params), ...); 
+    using expander = int[];
+    (void)expander{0, (void(std::cout << "->" << params), 0)...};
 
     std::cout << std::endl;
 
