@@ -41,10 +41,30 @@ auto main(int argc, const char** argv) -> int {
   Analyzer<int, int> analyzer(run);
 
   vector<chrono::duration<double>> tiemposDeEjecucion;
+  vector<double> speedup;
+
+  bool escalable = false;
+  double speedProm = 0;
 
   for(int i = 1; i <= 32; i *= 2) {
     tiemposDeEjecucion.push_back(analyzer.printResults(100, 1000000, i));
   }
+
+  for(int i = 0; i < tiemposDeEjecucion.size(); i++) {
+    double t1 = std::chrono::duration_cast<std::chrono::microseconds>(tiemposDeEjecucion[0]).count();
+    double ti = std::chrono::duration_cast<std::chrono::microseconds>(tiemposDeEjecucion[i]).count();
+    speedup.push_back(t1 / ti);
+    speedProm += speedup[i];
+    cout << speedup[i] << endl;
+  }
+
+  speedProm /= speedup.size();
+
+  if(speedProm > 1) {
+    escalable = true;
+  }
+
+  cout << ((escalable)? "Es escalable" : "No es escalable") << endl;
 
   return 0;
 }
