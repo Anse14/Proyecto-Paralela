@@ -1,11 +1,14 @@
 #include "./RngStream.h"
 #include "./Analyzer.h"
 #include <iostream>
+#include <vector>
 #include <chrono>
 #include <omp.h>
 using namespace std;
 
 chrono::duration<double> run(int nP, int numThreads) {
+  omp_set_num_threads(numThreads);
+
   RngStream RngArray[numThreads];
 
   chrono::steady_clock::time_point begin = chrono::steady_clock::now();
@@ -37,7 +40,7 @@ auto main(int argc, const char** argv) -> int {
 
   Analyzer<int, int> analyzer(run);
 
-  analyzer.printResults(100, nP, numThreads);
+  auto res = analyzer.printResults(100, 1000000, 1);
 
   return 0;
 }

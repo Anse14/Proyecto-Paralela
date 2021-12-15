@@ -21,24 +21,32 @@ public:
     return count;
   }
 
-  void printResults(int times, Types... params) {
+  std::chrono::duration<double> printResults(int times, Types... params) {
     ((std::cout << "->" << params), ...); 
 
     std::cout << std::endl;
 
     auto count = this->test(times, params...);
 
-    std::cout
-        << "Time difference = "
-        << std::chrono::duration_cast<std::chrono::milliseconds>(count).count()
-        << "[ms]" << std::endl;
+    //std::cout
+        //<< "Time difference = "
+        //<< std::chrono::duration_cast<std::chrono::milliseconds>(count).count()
+        //<< "[ms]" << std::endl;
     std::cout
         << "Time difference = "
         << std::chrono::duration_cast<std::chrono::microseconds>(count).count()
         << "[µs]" << std::endl;
-    std::cout
-        << "Time difference = "
-        << std::chrono::duration_cast<std::chrono::nanoseconds>(count).count()
-        << "[ns]" << std::endl;
+    //std::cout
+        //<< "Time difference = "
+        //<< std::chrono::duration_cast<std::chrono::nanoseconds>(count).count()
+        //<< "[ns]" << std::endl;
+    return count;
   }
+
+  //double calcSpeedup(int times, Types... sec, Types... paral) {
+    //auto secTime = std::chrono::duration_cast<std::chrono::microseconds>(test(times, sec...)).count();
+    //auto paralTime = std::chrono::duration_cast<std::chrono::microseconds>(test(times, paral...)).count();
+
+    
+  //}
 };
