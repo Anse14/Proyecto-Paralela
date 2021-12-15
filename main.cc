@@ -40,7 +40,11 @@ auto main(int argc, const char** argv) -> int {
 
   Analyzer<int, int> analyzer(run);
 
-  auto res = analyzer.printResults(100, 1000000, 1);
+  vector<chrono::duration<double>> tiemposDeEjecucion;
+
+  for(int i = 1; i <= 32; i *= 2) {
+    tiemposDeEjecucion.push_back(analyzer.printResults(100, 1000000, i));
+  }
 
   return 0;
 }
